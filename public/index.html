@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <title>To-Do List</title>
+      <link href="styles/main.css" rel="stylesheet">
+   </head>
+   <body>
+    
+      <div class="container-fluid user mt-3 mb-3">
+         <div class="row">
+            <div class="col">
+                <input type="text" class="form-control user-id" placeholder="ID" readonly>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control user-name" placeholder="Name" id="userNameInput" readonly onclick="removeReadOnly()">
+            </div>
+        </div>
+        <div class="row justify-content-center py-4" id="userBtn" style="display:none;">
+            <button type="submit" class="btn btn-primary mx-3 user-update">Update</button>
+            <button type="submit" class="btn btn-danger mx-3 user-delete">Delete</button>
+         </div>
+      </div>
+
+      <div class="container-fluid mt-5 mb-2">
+        <h2 class="text-center mb-4">To-DO List</h2>
+        <div class="row">
+           <div class="col">
+             <div class="form-group" data-toggle="collapse" data-target="#new-title">
+              <input type="text" class="form-control new-title" placeholder="Add new task">
+             </div>
+             <div class="collapse mt-3 mb-5" id="new-title">
+               <div>
+                 <div class="form-group">
+                   <textarea class="form-control new-description" rows="3" placeholder="my description here" required></textarea>
+                 </div>
+               </div>
+               <button id="createTaskForm" class="btn btn-sm btn-primary">Add Task</button>
+             </div>
+           </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mb-5 tasks" id="tasksContainer">
+      </div>
+
+      <script>
+        var inputElement = document.getElementById('userNameInput');
+        var userBtn = document.getElementById('userBtn');
+    
+        function removeReadOnly() {
+            inputElement.readOnly = false;
+            userBtn.style.display="flex";
+        }
+    
+        function addReadOnly() {
+            inputElement.readOnly = true;
+            setTimeout(() => {
+              userBtn.style.display = 'none';
+            }, 2000);
+        }
+      </script>
+      
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <!-- Firebase JavaScript SDK -->
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  
+      <!-- Your Firebase Config -->
+      <script src="app/conf.js"></script>
+      <script src="app/utils.js"></script>
+      <script defer src="app/app.js"></script>
+   </body>
+</html>

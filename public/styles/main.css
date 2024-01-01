@@ -1,0 +1,56 @@
+
+body {
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+
+  .task-html-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .task-html {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .task-html input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  .task-html input[type="text"] {
+    flex: 1;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  .task-html button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+  
+
+  input {
+    border: none;
+  }
+
+  .form-control {
+    border: none;
+  }
+  
