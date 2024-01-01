@@ -59,13 +59,23 @@ In future updates, the JSON structure will include:
 
 ### Screenshots and Video Demonstration:
 
-- Adding a new task to the list.
-  ![Add Task](media/WhatsApp Image 2024-01-01 at 10.55.53 PM.jpeg?raw=true)
-- Updating your name within the application.
+
+#### Adding a new task to the list.
+  ![Add Task](media/WhatsApp%20Image%202024-01-01%20at%2010.55.53%20PM.jpeg?raw=true)
+
+
+#### Updating your name within the application.
+
   ![Update Name](media/WhatsApp%20Image%202024-01-01%20at%2010.55.54%20PM.jpeg?raw=true)
-- Reading and deleting tasks from the list.
+
+
+#### Reading and deleting tasks from the list.
+
   ![Read/Delete Task](media/WhatsApp%20Image%202024-01-01%20at%2010.55.56%20PM.jpeg?raw=true)
-- Auto account setup functionality on application load.
+
+
+#### Auto account setup functionality on application load.
+
   ![Auto Acct Setup Onload](media/WhatsApp%20Image%202024-01-01%20at%2010.55.57%20PM.jpeg?raw=true)
 
 [Watch the Video Demonstration](media/WhatsApp%20Video%202024-01-01%20at%2010.56.14%20PM.mp4?raw=true)
