@@ -14,36 +14,6 @@
           "description": "Implement reminders and notifications for upcoming deadlines."
         }
       ]
-    },
-    {
-    "id": "user123",
-    "name": "John Doe",
-    "tasks": [
-      {
-        "title": "Integrate Reminders",
-        "description": "Add the ability for users to assign priority levels to tasks."
-      },
-      {
-        "id": 2,
-        "title": "Integrate Reminders",
-        "description": "Implement reminders and notifications for upcoming deadlines."
-      }
-    ]
-  },
-  {
-  "id": "user123",
-  "name": "John Doe",
-  "tasks": [
-    {
-      "title": "Integrate Reminders",
-      "description": "Add the ability for users to assign priority levels to tasks."
-    },
-    {
-      "id": 2,
-      "title": "Integrate Reminders",
-      "description": "Implement reminders and notifications for upcoming deadlines."
     }
-  ]
-}
   ]
 }
