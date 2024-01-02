@@ -8,8 +8,8 @@ getUser().then(id => {
    userId = id;
    readUserJson(id).then(data =>{
     // Update user profile
-   user.querySelector('.user-id').value = data.id;
-   user.querySelector('.user-name').value = data.name;
+    userDiv.querySelector('.user-id').value = data.id;
+    userDiv.querySelector('.user-name').value = data.name;
       readUserTasksJson(id).then(dataList => {
          dataList.forEach(item => {
             //  alert(item.id);
@@ -99,7 +99,7 @@ function createTaskForm(event) {
    });
    title.value = '';
    description.value = '';
-   bootstrap.Collapse(document.getElementById("new-title"), {
+   new bootstrap.Collapse(document.getElementById("new-title"), {
      toggle: true
    });
 };

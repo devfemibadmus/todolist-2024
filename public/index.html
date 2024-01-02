@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="row justify-content-center py-4" id="userBtn" style="display:none;">
-            <button type="submit" class="btn btn-primary mx-3 user-update">Update</button>
-            <button type="submit" class="btn btn-danger mx-3 user-delete">Delete</button>
+            <button type="submit" class="btn btn-primary mx-3" onclick="UpdateUserAcct()">Update</button>
+            <button type="submit" class="btn btn-danger mx-3" onclick="DeleteAcct()">Delete</button>
          </div>
       </div>
 
@@ -37,7 +37,7 @@
                    <textarea class="form-control new-description" rows="3" placeholder="my description here" required></textarea>
                  </div>
                </div>
-               <button id="createTaskForm" class="btn btn-sm btn-primary">Add Task</button>
+               <button class="btn btn-sm btn-primary" onclick="createTaskForm(event)">Add Task</button>
              </div>
            </div>
         </div>

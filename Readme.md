@@ -21,7 +21,6 @@ The current JSON structure is as follows:
 ```json
 {
   "users": [
-    null,
     {
       "id": "3",
       "name": "John Doe",
@@ -30,6 +29,55 @@ The current JSON structure is as follows:
           "description": "watch some good tutorial on how to fuck before wednesday",
           "id": "-Nn5uJ5OynHWxO66-3z8",
           "title": "become great"
+        }
+      }
+    }
+  ]
+}
+
+
+The Inspired JSON structure is as follows:
+
+```json
+{
+  "users": [
+    {
+      "id": "4",
+      "name": "John Doe",
+      "tasks": {
+        "-Nn5uJ5OynHWxO66-3z8": {
+          "description": "watch some good tutorial",
+          "id": "-Nn5uJ5OynHWxO66-3z8",
+          "title": "become great",
+          "date_created": "2024-01-02"
+        }
+      },
+      "shared_tasks": {
+        "-Abc123": {
+          "taskId": "-Nn5uJ5OynHWxO66-3z8",
+          "mainUserId": "3"
+        },
+        "-Xyz456": {
+          "taskId": "-Nn59syndUq_S-lmTEMc",
+          "mainUserId": "3"
+        }
+      }
+    },
+    {
+      "id": "3",
+      "name": "John Doe",
+      "tasks": {
+        "-Nn5uJ5OynHWxO66-3z8": {
+          "description": "watch some good tutorial on how to fvk before wednesday",
+          "id": "-Nn5uJ5OynHWxO66-3z8",
+          "title": "Big me",
+          "date_created": "2024-01-01"
+        },
+        "-Nn59syndUq_S-lmTEMc": {
+          "description": "test description",
+          "id": "-Nn59syndUq_S-lmTEMc",
+          "title": "test",
+          "date_created": "2024-01-02"
         }
       }
     }

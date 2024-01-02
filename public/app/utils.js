@@ -1,4 +1,4 @@
-// Function to create a task for a user
+// Function to create task for user
 async function createUserTaskJson(userId, newTask) {
   try {
     const userTasksRef = firebase.database().ref(`users/${userId}/tasks`);
@@ -47,7 +47,7 @@ async function deleteUserTask(userId, taskId) {
   }
 }
 
-// Function to create or update a user
+// Function to create user
 async function createUser(userId, userName) {
   try {
     const userRef = firebase.database().ref(`users/${userId}`);
@@ -76,7 +76,7 @@ async function readUserJson(userId) {
     return null;
   }
 }
-// Function to update a user's name
+// Function to update user's name
 async function updateUserName(userId, newName) {
   try {
     const userRef = firebase.database().ref(`users/${userId}/name`);
@@ -86,7 +86,7 @@ async function updateUserName(userId, newName) {
     console.error("Error updating user name in Firebase:", error);
   }
 }
-// Function to delete a user
+// Function to delete user
 async function deleteUser(userId) {
   try {
     const userRef = firebase.database().ref(`users/${userId}`);
@@ -104,7 +104,7 @@ async function deleteUser(userId) {
   }
 }
 
-// Function to generate a unique userId
+// Function to generate unique userId
 async function generateUniqueUserId() {
   try {
     const usersRef = firebase.database().ref('users');
@@ -123,7 +123,7 @@ async function generateUniqueUserId() {
     return null;
   }
 }
-
+// Function to get user(local) else create
 async function getUser() {
   try {
     // Check if userId is cached in local storage
