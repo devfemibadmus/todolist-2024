@@ -1,3 +1,7 @@
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const tasksRef = database.ref('tasks');
+
 // Function to create task for user
 async function createUserTaskJson(userId, newTask) {
   try {
