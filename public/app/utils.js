@@ -17,7 +17,6 @@ async function createUserTaskJson(userId, newTask) {
     return null;
   }
 }
-
 // Function to read user tasks
 async function readUserTasksJson(userId) {
   try {
@@ -30,7 +29,6 @@ async function readUserTasksJson(userId) {
     return [];
   }
 }
-
 // Function to delete user tasks
 async function deleteUserTask(userId, taskId) {
   try {
@@ -49,11 +47,8 @@ async function deleteUserTask(userId, taskId) {
   }
 }
 
-
-
-
 // Function to create or update a user
-async function createOrUpdateUser(userId, userName) {
+async function createUser(userId, userName) {
   try {
     const userRef = firebase.database().ref(`users/${userId}`);
     await userRef.set({ id: userId, name: userName });
@@ -62,7 +57,6 @@ async function createOrUpdateUser(userId, userName) {
     console.error("Error creating/updating user in Firebase:", error);
   }
 }
-
 // Function to read user data
 async function readUserJson(userId) {
   try {
@@ -82,7 +76,6 @@ async function readUserJson(userId) {
     return null;
   }
 }
-
 // Function to update a user's name
 async function updateUserName(userId, newName) {
   try {
@@ -93,7 +86,6 @@ async function updateUserName(userId, newName) {
     console.error("Error updating user name in Firebase:", error);
   }
 }
-
 // Function to delete a user
 async function deleteUser(userId) {
   try {
@@ -111,8 +103,6 @@ async function deleteUser(userId) {
     console.error("Error deleting user from Firebase:", error);
   }
 }
-
-
 
 // Function to generate a unique userId
 async function generateUniqueUserId() {
@@ -133,7 +123,6 @@ async function generateUniqueUserId() {
     return null;
   }
 }
-
 
 async function getUser() {
   try {
@@ -156,7 +145,7 @@ async function getUser() {
     if (newUserId) {
       // Create a new user with the generated userId
       const userName = "John Doe"; // Replace with the actual user name
-      await createOrUpdateUser(newUserId, userName);
+      await createUser(newUserId, userName);
 
       // Save the new userId to local storage
       localStorage.setItem('userId', newUserId);

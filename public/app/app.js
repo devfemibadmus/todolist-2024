@@ -1,16 +1,15 @@
-const user = document.querySelector('.user');
-const userDeleteButton = user.querySelector('.user-delete');
-const userUpdateButton = user.querySelector('.user-update');
+const userDiv = document.querySelector('.user');
 const tasksContainer = document.querySelector('.tasks');
-const taskElements = tasksContainer.querySelectorAll('.task');
 
-
+/// Window onload load user data
 let userId = "";
 getUser().then(id => {
    console.log("Current user:", id);
    userId = id;
    readUserJson(id).then(data =>{
-      updateUserProfile(user, data);
+    // Update user profile
+   user.querySelector('.user-id').value = data.id;
+   user.querySelector('.user-name').value = data.name;
       readUserTasksJson(id).then(dataList => {
          dataList.forEach(item => {
             //  alert(item.id);
@@ -20,35 +19,25 @@ getUser().then(id => {
    })
  }).catch(error => {
    console.error("Error getting user:", error);
- });
+});
  
-
-userDeleteButton.addEventListener('click', async function () {
-   await deleteUser(userId);
-   location.reload();
-});
-
-userUpdateButton.addEventListener('click', async function () {
-   var userBtn = document.getElementById('userBtn');
-   const userId = user.querySelector('.user-id').value;
-   const name = user.querySelector('.user-name').value;
-   console.log("update name:", name);
-   userBtn.style.display="none";
-   await updateUserName(userId, name).then(a=>{
-      readUserTasksJson(userId).then(dataList => {
-         dataList.forEach(item => {
-            //  alert(item.id);
-           createNewTaskUI(item);
-         });
-       });
+// Delete user account
+function DeleteAcct() {
+   deleteUser(userId).then(a=>{
+    location.reload();
    })
-});
+};
 
-function updateUserProfile(user, userProfile) {
-   user.querySelector('.user-id').value = userProfile.id;
-   user.querySelector('.user-name').value = userProfile.name;
-}
+// Update user account
+function UpdateUserAcct() {
+   document.getElementById('userBtn').style.display="none";
+   const userId = userDiv.querySelector('.user-id').value;
+   const name = userDiv.querySelector('.user-name').value;
+   console.log("update name:", name);
+   updateUserName(userId, name);
+};
 
+// On creating neww task
 function createNewTaskUI(createdTaskData) {
    try {
      // Create a new task element dynamically
@@ -84,41 +73,35 @@ function createNewTaskUI(createdTaskData) {
    }
 }
  
-
+// On deleting task
 function deleteTask(id){
    document.getElementById(id+"taskitem").style.display = 'none';
    console.log(id);
    deleteUserTask(userId, id);
 }
 
-function toggleNewTitle() {
-   document.querySelector('.new-title').value = '';
-    document.querySelector('.new-description').value = '';
-   var newTitleCollapse = new bootstrap.Collapse(document.getElementById("new-title"), {
-     toggle: true
-   });
- }
-
-document.getElementById("createTaskForm").addEventListener("click", async function (event) {
+// Create new task
+function createTaskForm(event) {
    event.preventDefault();
    const title = document.getElementsByClassName("new-title")[0].value;
    const description = document.getElementsByClassName("new-description")[0].value;
-
-   // Now you can use these variables to create or process your task as needed
    const newTaskData = {
       'title':title,
       'description':description,
    }
-   const id = await createUserTaskJson(userId, newTaskData);
+   const id = createUserTaskJson(userId, newTaskData).then(a=>{
    const createdTaskData = {
-      'id':id,
-      'title':title,
-      'description':description,
-   }
-   createNewTaskUI(createdTaskData);
-   
-   toggleNewTitle();
-});
-
+    'id':id,
+    'title':title,
+    'description':description,
+ }
+ createNewTaskUI(createdTaskData);
+   });
+   title.value = '';
+   description.value = '';
+   bootstrap.Collapse(document.getElementById("new-title"), {
+     toggle: true
+   });
+};
 
 

@@ -20,23 +20,20 @@ The current JSON structure is as follows:
 
 ```json
 {
-    "users": [
-        {
-            "id": "user123",
-            "name": "John Doe",
-            "tasks": [
-                {
-                    "title": "Integrate Reminders",
-                    "description": "Add the ability for users to assign priority levels to tasks."
-                },
-                {
-                    "id": 2,
-                    "title": "Integrate Reminders",
-                    "description": "Implement reminders and notifications for upcoming deadlines."
-                }
-            ]
+  "users": [
+    null,
+    {
+      "id": "3",
+      "name": "John Doe",
+      "tasks": {
+        "-Nn5uJ5OynHWxO66-3z8": {
+          "description": "watch some good tutorial on how to fuck before wednesday",
+          "id": "-Nn5uJ5OynHWxO66-3z8",
+          "title": "become great"
         }
-    ]
+      }
+    }
+  ]
 }
 ```
 
