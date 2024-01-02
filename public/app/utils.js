@@ -1,5 +1,4 @@
 // Function to create a task for a user
-// Function to create a task for a user
 async function createUserTaskJson(userId, newTask) {
   try {
     const userTasksRef = firebase.database().ref(`users/${userId}/tasks`);
@@ -49,9 +48,6 @@ async function deleteUserTask(userId, taskId) {
     console.error("Error deleting task in Firebase:", error);
   }
 }
-
-
-
 
 
 
@@ -115,6 +111,8 @@ async function deleteUser(userId) {
     console.error("Error deleting user from Firebase:", error);
   }
 }
+
+
 
 // Function to generate a unique userId
 async function generateUniqueUserId() {

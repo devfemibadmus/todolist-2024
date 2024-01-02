@@ -4,8 +4,6 @@
 
 Todolist-2024 is a user-friendly task management application designed to facilitate collaboration by allowing users to pair up with others and share task lists seamlessly. The primary goal is to enhance user productivity by providing a simple yet efficient way to manage tasks.
 
-![Overview Image](media/WhatsApp%20Image%202024-01-01%20at%2010.55.57%20PM.jpeg?raw=true)
-
 ## Features
 
 - **User Pairing**: Pair with other users using their unique user ID.

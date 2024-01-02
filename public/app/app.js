@@ -34,7 +34,7 @@ userUpdateButton.addEventListener('click', async function () {
    const name = user.querySelector('.user-name').value;
    console.log("update name:", name);
    userBtn.style.display="none";
-   await createOrUpdateUser(userId, name).then(a=>{
+   await updateUserName(userId, name).then(a=>{
       readUserTasksJson(userId).then(dataList => {
          dataList.forEach(item => {
             //  alert(item.id);
