@@ -34,7 +34,7 @@ The current JSON structure is as follows:
     }
   ]
 }
-
+```
 
 The Inspired JSON structure is as follows:
 
