@@ -14,10 +14,10 @@ async function createUserTaskJson(userId, newTask) {
     // Set the new task data with the taskId
     await newTaskRef.set({ ...newTask, id: taskId });
 
-    console.log(`Task added for user ${userId} with ID: ${taskId}`);
+    // console.log(`Task added for user ${userId} with ID: ${taskId}`);
     return taskId;
   } catch (error) {
-    console.error("Error adding task to Firebase:", error);
+    // console.error("Error adding task to Firebase:", error);
     return null;
   }
 }
@@ -29,8 +29,21 @@ async function readUserTasksJson(userId) {
     const tasksData = snapshot.val();
     return tasksData ? Object.values(tasksData) : [];
   } catch (error) {
-    console.error("Error fetching user tasks from Firebase:", error);
+    // console.error("Error fetching user tasks from Firebase:", error);
     return [];
+  }
+}
+// Function to read a single user task by taskId
+async function readUserTaskByIdJson(userId, taskId) {
+  try {
+    // alert(taskId)
+    const userTaskRef = firebase.database().ref(`users/${userId}/tasks/${taskId}`);
+    const snapshot = await userTaskRef.once('value');
+    const taskData = snapshot.val();
+    return taskData ? taskData : null;
+  } catch (error) {
+    // console.error("Error fetching user task from Firebase:", error);
+    return null;
   }
 }
 // Function to delete user tasks
@@ -42,12 +55,12 @@ async function deleteUserTask(userId, taskId) {
     if (existingTask.exists()) {
       // Delete the task
       await userTaskRef.remove();
-      console.log(`Task ${taskId} deleted for user ${userId}`);
+      // console.log(`Task ${taskId} deleted for user ${userId}`);
     } else {
-      console.error(`Task with ID ${taskId} not found for user ${userId}.`);
+      // console.error(`Task with ID ${taskId} not found for user ${userId}.`);
     }
   } catch (error) {
-    console.error("Error deleting task in Firebase:", error);
+    // console.error("Error deleting task in Firebase:", error);
   }
 }
 
@@ -56,9 +69,9 @@ async function createUser(userId, userName) {
   try {
     const userRef = firebase.database().ref(`users/${userId}`);
     await userRef.set({ id: userId, name: userName });
-    console.log(`User ${userId} created or updated with name: ${userName}`);
+    // console.log(`User ${userId} created or updated with name: ${userName}`);
   } catch (error) {
-    console.error("Error creating/updating user in Firebase:", error);
+    // console.error("Error creating/updating user in Firebase:", error);
   }
 }
 // Function to read user data
@@ -69,14 +82,14 @@ async function readUserJson(userId) {
 
     if (userSnapshot.exists()) {
       const userData = userSnapshot.val();
-      console.log(`User data for ${userId}:`, userData);
+      // console.log(`User data for ${userId}:`, userData);
       return userData;
     } else {
-      console.error(`User with ID ${userId} not found.`);
+      // console.error(`User with ID ${userId} not found.`);
       return null;
     }
   } catch (error) {
-    console.error("Error reading user data from Firebase:", error);
+    // console.error("Error reading user data from Firebase:", error);
     return null;
   }
 }
@@ -85,9 +98,9 @@ async function updateUserName(userId, newName) {
   try {
     const userRef = firebase.database().ref(`users/${userId}/name`);
     await userRef.set(newName);
-    console.log(`User ${userId}'s name updated to: ${newName}`);
+    // console.log(`User ${userId}'s name updated to: ${newName}`);
   } catch (error) {
-    console.error("Error updating user name in Firebase:", error);
+    // console.error("Error updating user name in Firebase:", error);
   }
 }
 // Function to delete user
@@ -99,12 +112,12 @@ async function deleteUser(userId) {
     if (existingUser.exists()) {
       // Delete the user document
       await userRef.remove();
-      console.log(`User ${userId} deleted from Firebase.`);
+      // console.log(`User ${userId} deleted from Firebase.`);
     } else {
-      console.error(`User with ID ${userId} not found.`);
+      // console.error(`User with ID ${userId} not found.`);
     }
   } catch (error) {
-    console.error("Error deleting user from Firebase:", error);
+    // console.error("Error deleting user from Firebase:", error);
   }
 }
 
@@ -120,10 +133,10 @@ async function generateUniqueUserId() {
     // Generate a unique userId (increment the user count)
     const userId = userCount + 1;
 
-    console.log(`Generated unique userId: ${userId}`);
+    // console.log(`Generated unique userId: ${userId}`);
     return userId.toString(); // Convert to string if needed
   } catch (error) {
-    console.error("Error generating unique userId:", error);
+    // console.error("Error generating unique userId:", error);
     return null;
   }
 }
@@ -138,7 +151,7 @@ async function getUser() {
       const user = await readUserJson(cachedUserId);
 
       if (user) {
-        console.log(`User found using cached userId: ${cachedUserId}`);
+        // console.log(`User found using cached userId: ${cachedUserId}`);
         return cachedUserId;
       }
     }
@@ -154,14 +167,14 @@ async function getUser() {
       // Save the new userId to local storage
       localStorage.setItem('userId', newUserId);
 
-      console.log(`New user created with userId: ${newUserId}`);
+      // console.log(`New user created with userId: ${newUserId}`);
       return newUserId;
     } else {
-      console.error("Failed to generate a unique userId.");
+      // console.error("Failed to generate a unique userId.");
       return null;
     }
   } catch (error) {
-    console.error("Error getting user:", error);
+    // console.error("Error getting user:", error);
     return null;
   }
 }

@@ -3,24 +3,81 @@ const tasksContainer = document.querySelector('.tasks');
 
 /// Window onload load user data
 let userId = "";
-getUser().then(id => {
-   console.log("Current user:", id);
-   userId = id;
-   readUserJson(id).then(data =>{
-    // Update user profile
-    userDiv.querySelector('.user-id').value = data.id;
-    userDiv.querySelector('.user-name').value = data.name;
-      readUserTasksJson(id).then(dataList => {
-         dataList.forEach(item => {
-            //  alert(item.id);
-           createNewTaskUI(item);
+let userName = ""
+// Function to extract query parameters from the URL
+function getQueryParameter(parameterName) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(parameterName);
+}
+
+window.onload = function (){
+  //
+  const id = getQueryParameter('id') || 'Not specified';
+  const name = getQueryParameter('name') || 'Not specified';
+  const taskId = getQueryParameter('taskId') || 'Not specified';
+  if(id!='Not specified' && name!='Not specified' && taskId==='Not specified'){
+    userId = id;
+    userName = name
+    readUserJson(id).then(data =>{
+      if(data.name.replace(/\s+/g, '')===name.replace(/\s+/g, '')){
+      // Update user profile
+      userDiv.querySelector('.user-id').value = data.id;
+      userDiv.querySelector('.user-name').value = data.name;
+        readUserTasksJson(id).then(dataList => {
+           dataList.forEach(item => {
+              //  alert(item.id);
+             createNewTaskUI(item);
+           });
+         });}
+         else{
+          // console.log(data.name);
+          // console.log(name);
+          $('body').html("<p style='text-align: center;'>Invalid credentials</p>");
+         }
+     })
+  }
+  else if(id!='Not specified' && taskId!='Not specified'){
+    alert("HI")
+    readUserJson(id).then(data =>{
+      // Update user profile
+      userName = data.name;
+      userDiv.querySelector('.user-id').value = data.id;
+      userDiv.querySelector('.user-name').value = data.name;
+      userDiv.querySelector('.user-name').removeAttribute('onclick');
+      document.getElementsByClassName('createTask')[0].style.display="none";
+      readUserTaskByIdJson(id, taskId).then(data => {
+        // alert(data)
+        createNewTaskUI(data);
+        document.getElementsByClassName('task-delete')[0].style.display="none";
+        document.getElementsByClassName('collapse')[0].style.display="none";
          });
-       });
-   })
- }).catch(error => {
-   console.error("Error getting user:", error);
-});
- 
+     })
+  }
+  else{
+    alert("NOPE")
+    getUser().then(id => {
+      // console.log("Current user:", id);
+      userId = id;
+      readUserJson(id).then(data =>{
+       // Update user profile
+       userName = data.name;
+       userDiv.querySelector('.user-id').value = data.id;
+       userDiv.querySelector('.user-name').value = data.name;
+         readUserTasksJson(id).then(dataList => {
+            dataList.forEach(item => {
+               //  alert(item.id);
+              createNewTaskUI(item);
+            });
+          });
+      })
+    }).catch(error => {
+      // console.error("Error getting user:", error);
+   });
+  }
+}
+
+
 // Delete user account
 function DeleteAcct() {
    deleteUser(userId).then(a=>{
@@ -33,7 +90,7 @@ function UpdateUserAcct() {
    document.getElementById('userBtn').style.display="none";
    const userId = userDiv.querySelector('.user-id').value;
    const name = userDiv.querySelector('.user-name').value;
-   console.log("update name:", name);
+   // console.log("update name:", name);
    updateUserName(userId, name);
 };
 
@@ -57,6 +114,7 @@ function createNewTaskUI(createdTaskData) {
              </div>
            </div>
            <button class="btn btn-sm btn-danger task-delete" onclick="deleteTask('${createdTaskData.id}')">Delete Task</button>
+           <button class="btn btn-sm btn-primary " onclick="myFunction('${createdTaskData.id}')" onmouseout="outFunc('${createdTaskData.id}')"><span class="tooltiptext" id="${createdTaskData.id}tooltiptext">Copy to clipboard</span></button>
          </div>
        </div>
      `;
@@ -66,17 +124,28 @@ function createNewTaskUI(createdTaskData) {
      if (tasksContainer) {
        tasksContainer.insertBefore(newTaskElement, tasksContainer.firstChild);
      } else {
-       console.error("Tasks container not found");
+       // console.error("Tasks container not found");
      }
    } catch (error) {
-     console.error("Error creating new task UI:", error);
+     // console.error("Error creating new task UI:", error);
    }
 }
- 
+function myFunction(id) {
+  var copytext = "https://todolist-2024.web.app/?id="+userId+"&name="+userName+"&taskId="+id
+  navigator.clipboard.writeText(copytext);
+  
+  var tooltip = document.getElementById(id+"tooltiptext");
+  tooltip.innerHTML = copytext;
+}
+
+function outFunc(id) {
+  var tooltip = document.getElementById(id+"tooltiptext");
+  tooltip.innerHTML = "Copy to clipboard";
+}
 // On deleting task
 function deleteTask(id){
    document.getElementById(id+"taskitem").style.display = 'none';
-   console.log(id);
+   // console.log(id);
    deleteUserTask(userId, id);
 }
 
@@ -105,3 +174,34 @@ function createTaskForm(event) {
 };
 
 
+
+/*
+function sharePage() {
+            // Get the current URL
+            const currentUrl = window.location.href;
+
+            // Add a parameter to the URL
+            const modifiedUrl = addParameter(currentUrl, 'id', '1');
+
+            // Copy the modified URL to the clipboard
+            copyToClipboard(modifiedUrl);
+
+            // You can also use the modifiedUrl as needed (e.g., open in a new window, share on social media, etc.)
+            // console.log('Modified URL:', modifiedUrl);
+        }
+
+        function addParameter(url, key, value) {
+            const separator = url.includes('?') ? '&' : '?';
+            return `${url}${separator}${key}=${value}`;
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            // alert('URL copied to clipboard!');
+        }
+*/

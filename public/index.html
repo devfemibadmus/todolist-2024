@@ -15,7 +15,7 @@
                 <input type="text" class="form-control user-id" placeholder="ID" readonly>
             </div>
             <div class="col">
-                <input type="text" class="form-control user-name" placeholder="Name" id="userNameInput" readonly onclick="removeReadOnly()">
+                <input type="text" class="form-control user-name" placeholder="Name" id="userNameInput" readonly onclick="removeReadOnly()" max="25">
             </div>
         </div>
         <div class="row justify-content-center py-4" id="userBtn" style="display:none;">
@@ -26,10 +26,10 @@
 
       <div class="container-fluid mt-5 mb-2">
         <h2 class="text-center mb-4">To-DO List</h2>
-        <div class="row">
+        <div class="row createTask">
            <div class="col">
              <div class="form-group" data-toggle="collapse" data-target="#new-title">
-              <input type="text" class="form-control new-title" placeholder="Add new task">
+              <input type="text" class="form-control new-title" placeholder="Add new task" max="25">
              </div>
              <div class="collapse mt-3 mb-5" id="new-title">
                <div>

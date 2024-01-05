@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract and Display URL Parameters</title>
+</head>
+<body>
+
+    <script>
+        // Function to extract query parameters from the URL
+        function getQueryParameter(parameterName) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get(parameterName);
+        }
+
+        // Get the value of the "name" parameter from the URL
+        const nameValue = getQueryParameter('name');
+
+        // Display the value on the page
+        const displayElement = document.createElement('p');
+        displayElement.textContent = `Name: ${nameValue || 'Not specified'}`;
+        document.body.appendChild(displayElement);
+    </script>
+
+</body>
+</html>
