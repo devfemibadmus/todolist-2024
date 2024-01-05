@@ -38,7 +38,7 @@ window.onload = function (){
      })
   }
   else if(id!='Not specified' && taskId!='Not specified'){
-    alert("HI")
+    // alert("HI")
     readUserJson(id).then(data =>{
       // Update user profile
       userName = data.name;
@@ -55,7 +55,7 @@ window.onload = function (){
      })
   }
   else{
-    alert("NOPE")
+    // alert("NOPE")
     getUser().then(id => {
       // console.log("Current user:", id);
       userId = id;
@@ -131,7 +131,7 @@ function createNewTaskUI(createdTaskData) {
    }
 }
 function myFunction(id) {
-  var copytext = "https://todolist-2024.web.app/?id="+userId+"&name="+userName+"&taskId="+id
+  var copytext = "https://todolist-2024.web.app/?id="+userId+"&taskId="+id
   navigator.clipboard.writeText(copytext);
   
   var tooltip = document.getElementById(id+"tooltiptext");
@@ -150,7 +150,7 @@ function deleteTask(id){
 }
 
 // Create new task
-function createTaskForm(event) {
+async function createTaskForm(event) {
    event.preventDefault();
    const title = document.getElementsByClassName("new-title")[0].value;
    const description = document.getElementsByClassName("new-description")[0].value;
@@ -158,50 +158,19 @@ function createTaskForm(event) {
       'title':title,
       'description':description,
    }
-   const id = createUserTaskJson(userId, newTaskData).then(a=>{
+   document.getElementsByClassName("new-title")[0].value = '';
+   document.getElementsByClassName("new-description")[0].value = '';
+   var a = new bootstrap.Collapse(document.getElementById("new-title"), {
+     toggle: true
+   });
+   const id = await createUserTaskJson(userId, newTaskData);
+   
    const createdTaskData = {
     'id':id,
     'title':title,
     'description':description,
  }
  createNewTaskUI(createdTaskData);
-   });
-   title.value = '';
-   description.value = '';
-   new bootstrap.Collapse(document.getElementById("new-title"), {
-     toggle: true
-   });
 };
 
 
-
-/*
-function sharePage() {
-            // Get the current URL
-            const currentUrl = window.location.href;
-
-            // Add a parameter to the URL
-            const modifiedUrl = addParameter(currentUrl, 'id', '1');
-
-            // Copy the modified URL to the clipboard
-            copyToClipboard(modifiedUrl);
-
-            // You can also use the modifiedUrl as needed (e.g., open in a new window, share on social media, etc.)
-            // console.log('Modified URL:', modifiedUrl);
-        }
-
-        function addParameter(url, key, value) {
-            const separator = url.includes('?') ? '&' : '?';
-            return `${url}${separator}${key}=${value}`;
-        }
-
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            // alert('URL copied to clipboard!');
-        }
-*/

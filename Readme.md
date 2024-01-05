@@ -6,10 +6,10 @@ Todolist-2024 is a user-friendly task management application designed to facilit
 
 ## Features
 
-- **User Pairing**: Pair with other users using their unique user ID.
-- **List Sharing**: Share task lists with paired users.
 - **Auto Account Creation**: No need to log in or create an account; your data is associated with your user ID.
 - **Easy Name Updates**: Update your name effortlessly within the application.
+- **Login Anywhere**: Quick login with your user ID and name.
+- **Task Sharing**: Share task with their unique link.
 - **Cross-Device Sync**: In future versions, log in with your user ID on any device to access your task lists.
 
 ![Features Image](media/WhatsApp%20Image%202024-01-01%20at%2010.55.57%20PM.jpeg?raw=true)
@@ -17,26 +17,6 @@ Todolist-2024 is a user-friendly task management application designed to facilit
 ## JSON Structure
 
 The current JSON structure is as follows:
-
-```json
-{
-  "users": [
-    {
-      "id": "3",
-      "name": "John Doe",
-      "tasks": {
-        "-Nn5uJ5OynHWxO66-3z8": {
-          "description": "watch some good tutorial on how to fuck before wednesday",
-          "id": "-Nn5uJ5OynHWxO66-3z8",
-          "title": "become great"
-        }
-      }
-    }
-  ]
-}
-```
-
-The Inspired JSON structure is as follows:
 
 ```json
 {
@@ -50,16 +30,6 @@ The Inspired JSON structure is as follows:
           "id": "-Nn5uJ5OynHWxO66-3z8",
           "title": "become great",
           "date_created": "2024-01-02"
-        }
-      },
-      "shared_tasks": {
-        "-Abc123": {
-          "taskId": "-Nn5uJ5OynHWxO66-3z8",
-          "mainUserId": "3"
-        },
-        "-Xyz456": {
-          "taskId": "-Nn59syndUq_S-lmTEMc",
-          "mainUserId": "3"
         }
       }
     },
@@ -85,43 +55,25 @@ The Inspired JSON structure is as follows:
 }
 ```
 
-## Upcoming Features
 
-In future updates, the JSON structure will include:
+### Screenshots and Demonstration:
 
-- **Password Protection**: Enhanced security with password protection for user accounts.
-- **Pairing Information**: Pairing information to associate specific users with tasks.
-- **Additional Features**: Exciting new features to further improve the user experience.
+| Auto Account Setup | Updating Your Name |
+|-------------------- | ------------------- |
+| ![Auto Account Setup](readme/WhatsApp%20Image%202024-01-05%20at%205.00.02%20PM.jpeg?raw=true) | ![Update Name](readme/WhatsApp%20Image%202024-01-05%20at%205.00.04%20PM.jpeg?raw=true) |
 
-## Usage
+| Add New Task | View, Delete, and Share Tasks |
+|-------------- | ---------------------------- |
+| ![Add Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.05%20PM.jpeg?raw=true) | ![Read/Delete Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.07%20PM.jpeg?raw=true) |
 
-1. Pair with a user using their unique user ID.
-2. Create and share task lists with paired users.
-3. Update your name easily within the application.
-4. Enjoy the intuitive and easy-to-navigate UI.
+| Copied Sharing Link | View Shared Tasks from Link |
+|--------------------- | --------------------------- |
+| ![Read/Delete Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.11%20PM.jpeg?raw=true) | ![Read/Delete Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.12%20PM.jpeg?raw=true) |
 
-### Screenshots and Video Demonstration:
+| Signing on New Device | Signed In |
+|----------------------- | ---------- |
+| ![Read/Delete Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.12%20PM%20(1).jpeg?raw=true) | ![Read/Delete Task](readme/WhatsApp%20Image%202024-01-05%20at%205.00.13%20PM.jpeg?raw=true) |
 
-
-#### Adding a new task to the list.
-  ![Add Task](media/WhatsApp%20Image%202024-01-01%20at%2010.55.53%20PM.jpeg?raw=true)
-
-
-#### Updating your name within the application.
-
-  ![Update Name](media/WhatsApp%20Image%202024-01-01%20at%2010.55.54%20PM.jpeg?raw=true)
-
-
-#### Reading and deleting tasks from the list.
-
-  ![Read/Delete Task](media/WhatsApp%20Image%202024-01-01%20at%2010.55.56%20PM.jpeg?raw=true)
-
-
-#### Auto account setup functionality on application load.
-
-  ![Auto Acct Setup Onload](media/WhatsApp%20Image%202024-01-01%20at%2010.55.57%20PM.jpeg?raw=true)
-
-[Watch the Video Demonstration](media/WhatsApp%20Video%202024-01-01%20at%2010.56.14%20PM.mp4?raw=true)
 
 ## Feedback
 
